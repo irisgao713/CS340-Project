@@ -1,0 +1,49 @@
+ private void updateBranch()
+    {
+	int                bid;
+	String             bname;
+	PreparedStatement  ps;
+	  
+	try
+	{
+	  ps = con.prepareStatement("UPDATE branch SET branch_name = ? WHERE branch_id = ?");
+	
+	  System.out.print("\nBranch ID: ");
+	  bid = Integer.parseInt(in.readLine());
+	  ps.setInt(2, bid);
+
+	  System.out.print("\nBranch Name: ");
+	  bname = in.readLine();
+	  ps.setString(1, bname);
+
+	  int rowCount = ps.executeUpdate();
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nBranch " + bid + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+	    
+	    try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}	
+    }
+
+  
