@@ -1,0 +1,46 @@
+   /*
+     * deletes a branch
+     */ 
+    private void deleteProduct()
+    {
+	int                pid;
+	PreparedStatement  ps;
+	  
+	try
+	{
+	  ps = con.prepareStatement("DELETE FROM ProductO WHERE id = ?");
+	
+	  System.out.print("\nProduct ID: ");
+	  bid = Integer.parseInt(in.readLine());
+	  ps.setInt(1, pid);
+
+	  int rowCount = ps.executeUpdate();
+
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nProduct " + pid + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+
+            try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}
+    }
