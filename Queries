@@ -1,0 +1,18 @@
+CREATE VIEW 
+SELECT *
+FROM Store
+WHERE location = 'string'
+
+
+CREATE VIEW
+SELECT brand, price
+FROM Instrument i, Product O
+WHERE i.brand = 'string'
+
+
+CREATE VIEW
+SELECT brand, price
+FROM Equipment e, Product O
+WHERE e.brand = 'string'
+
+
