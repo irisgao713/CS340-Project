@@ -13,8 +13,8 @@
 	  ps.setInt(2, id);
 
 	  System.out.print("\nNew Price: ");
-	  bname = in.readLine();
-	  ps.setInt(2, price);
+	  price = in.readLine();
+	  ps.setInt(1, price);
 
 	  int rowCount = ps.executeUpdate();
 	  if (rowCount == 0)
@@ -23,6 +23,8 @@
 	  }
 
 	  con.commit();
+	  
+	  updateProductPrice(price,id);
 
 	  ps.close();
 	}
@@ -68,7 +70,7 @@
 	  ps.setInt(2, id);
 
 	  System.out.print("\nNew Price: ");
-	  bname = in.readLine();
+	  price = in.readLine();
 	  ps.setInt(1, price);
 
 	  int rowCount = ps.executeUpdate();
@@ -78,6 +80,8 @@
 	  }
 
 	  con.commit();
+	  
+	  updateProductPrice(price,id);
 
 	  ps.close();
 	}
