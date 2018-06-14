@@ -1,12 +1,111 @@
 
-    private void deleteProduct(int pid)
+   
+   
+   
+   private void deleteInstrument()
+    {
+        int insid;
+	PreparedStatement  ps;
+	  
+	try
+	{
+	  ps = con.prepareStatement("DELETE FROM ProductO WHERE id = " + insid);
+  
+	  System.out.print("\nInstrument ID: ");
+	  insid = in.readLine();
+	  ps.setInt(1, insid); 
+
+	  int rowCount = ps.executeUpdate();
+
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nInstrument " + insid + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+
+            try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}
+    }
+    
+   
+   private void deleteEquipment()
+    {
+        int eid;
+	PreparedStatement  ps;
+	  
+	try
+	{
+	  ps = con.prepareStatement("DELETE FROM ProductO WHERE id = " + eid);
+  
+	  System.out.print("\nEquipment ID: ");
+	  esid = in.readLine();
+	  ps.setInt(1, eid); 
+
+	  int rowCount = ps.executeUpdate();
+
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nEquipment " + eid + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+
+            try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}
+    }
+    
+    
+    
+
+    
+
+   
+   
+   private void deleteProduct(int pid)
     {
 
 	PreparedStatement  ps;
 	  
 	try
 	{
-	  ps = con.prepareStatement("DELETE FROM ProductO WHERE id = " + pid);=
+	  ps = con.prepareStatement("DELETE FROM ProductO WHERE id = " + pid);
 
 	  int rowCount = ps.executeUpdate();
 
@@ -38,3 +137,6 @@
 	    }
 	}
     }
+    
+    
+    
