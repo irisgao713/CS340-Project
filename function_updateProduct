@@ -1,25 +1,25 @@
- private void updateBranch()
+ private void updateInstrumentPrice()
     {
-	int                bid;
-	String             bname;
+	int                id;
+	int                price;
 	PreparedStatement  ps;
 	  
 	try
 	{
-	  ps = con.prepareStatement("UPDATE branch SET branch_name = ? WHERE branch_id = ?");
+	  ps = con.prepareStatement("UPDATE Instrument SET price = ? WHERE id = ?");
 	
-	  System.out.print("\nBranch ID: ");
-	  bid = Integer.parseInt(in.readLine());
-	  ps.setInt(2, bid);
+	  System.out.print("\nInstrument ID: ");
+	  id = Integer.parseInt(in.readLine());
+	  ps.setInt(2, id);
 
-	  System.out.print("\nBranch Name: ");
+	  System.out.print("\nNew Price: ");
 	  bname = in.readLine();
-	  ps.setString(1, bname);
+	  ps.setInt(2, price);
 
 	  int rowCount = ps.executeUpdate();
 	  if (rowCount == 0)
 	  {
-	      System.out.println("\nBranch " + bid + " does not exist!");
+	      System.out.println("\nInstrument " + id + " does not exist!");
 	  }
 
 	  con.commit();
@@ -47,3 +47,100 @@
     }
 
   
+  
+  
+  
+  
+  
+  
+   private void updateEquipmentPrice()
+    {
+	int                id;
+	int                price;
+	PreparedStatement  ps;
+	  
+	try
+	{
+	  ps = con.prepareStatement("UPDATE Equipment SET price = ? WHERE id = ?");
+	
+	  System.out.print("\nEquipment ID: ");
+	  id = Integer.parseInt(in.readLine());
+	  ps.setInt(2, id);
+
+	  System.out.print("\nNew Price: ");
+	  bname = in.readLine();
+	  ps.setInt(1, price);
+
+	  int rowCount = ps.executeUpdate();
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nEquipment " + id + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+	    
+	    try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}	
+    }
+
+
+
+
+
+
+private void updateProductPrice(int pr, int pid){
+
+try
+	{
+	  ps = con.prepareStatement("UPDATE ProductO SET price = "+ pr + " WHERE id = " + pid);
+	
+
+	  int rowCount = ps.executeUpdate();
+	  if (rowCount == 0)
+	  {
+	      System.out.println("\nProduct" + id + " does not exist!");
+	  }
+
+	  con.commit();
+
+	  ps.close();
+	}
+	catch (IOException e)
+	{
+	    System.out.println("IOException!");
+	}
+	catch (SQLException ex)
+	{
+	    System.out.println("Message: " + ex.getMessage());
+	    
+	    try 
+	    {
+		con.rollback();	
+	    }
+	    catch (SQLException ex2)
+	    {
+		System.out.println("Message: " + ex2.getMessage());
+		System.exit(-1);
+	    }
+	}	
+
+
+}
